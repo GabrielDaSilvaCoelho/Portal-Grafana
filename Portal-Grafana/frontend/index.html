@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Dashboards · Tríade</title>
+  <link rel="stylesheet" href="/estilo.css">
+  <script src="/portal.js" defer></script>
+</head>
+<body>
+  <header class="topo">
+    <a class="marca" href="/" aria-label="Tríade, início"><span class="logo"><img src="/logo-triade.png" alt="Tríade · Tecnologia e inovação" width="4500" height="2258"></span></a>
+    <a id="abrir-grafana" class="link-grafana" target="_blank" rel="noopener noreferrer" hidden>Ir para o Grafana ↗</a>
+  </header>
+  <main>
+    <section class="apresentacao" aria-labelledby="titulo">
+      <div><p class="sobretitulo">CENTRAL DE OPERAÇÕES</p><h1 id="titulo">Dashboards da operação</h1>
+      <p class="descricao">Acompanhe os indicadores e clique em um card para visualizar o dashboard aqui.</p></div>
+      <div class="resumo"><strong id="quantidade">—</strong><span id="rotulo-quantidade">dashboards disponíveis</span></div>
+    </section>
+    <section class="ferramentas" aria-label="Buscar dashboards">
+      <div class="busca"><label for="busca">Buscar dashboard</label><input id="busca" type="search" placeholder="Nome, pasta ou etiqueta" autocomplete="off" spellcheck="false"></div>
+      <div class="pastas"><label for="pasta">Pasta</label><select id="pasta"><option value="">Todas as pastas</option></select></div>
+      <p class="automatico"><span aria-hidden="true"></span>Atualização automática</p>
+    </section>
+    <div class="linha-status"><p id="status" role="status" aria-live="polite">Consultando o Grafana…</p><span id="horario"></span></div>
+    <div id="erro" class="erro" role="alert" hidden></div>
+    <section id="cards" class="cards" aria-label="Dashboards" aria-busy="true"></section>
+    <section id="vazio" class="vazio" hidden><h2 id="titulo-vazio"></h2><p id="texto-vazio"></p></section>
+  </main>
+  <footer>TRÍADE <span>Dados e indicadores da operação</span></footer>
+  <dialog id="visualizador" class="visualizador" aria-labelledby="visualizador-titulo">
+    <header class="visualizador-topo">
+      <div class="visualizador-identificacao"><span>DASHBOARD DA OPERAÇÃO</span><h2 id="visualizador-titulo"></h2></div>
+      <div class="visualizador-acoes">
+        <button id="recarregar-dashboard" class="botao-discreto" type="button">Recarregar</button>
+        <button id="fechar-dashboard" class="botao-discreto" type="button" autofocus>← Voltar</button>
+      </div>
+    </header>
+    <p id="aviso-endereco" class="aviso-endereco" hidden></p>
+    <div class="visualizador-corpo"><iframe id="dashboard-frame" title="Dashboard selecionado" allow="fullscreen"></iframe></div>
+    <details class="visualizador-ajuda">
+      <summary>O dashboard não apareceu?</summary>
+      <p>No Grafana, habilite <code>allow_embedding = true</code> na seção <code>[security]</code> e reinicie o serviço. Use o mesmo nome de endereço no portal e no Grafana (por exemplo, localhost nos dois). Se aparecer login, use “Voltar” e o link “Ir para o Grafana” do card para entrar com sua conta. Depois abra o dashboard aqui novamente.</p>
+    </details>
+  </dialog>
+</body>
+</html>
